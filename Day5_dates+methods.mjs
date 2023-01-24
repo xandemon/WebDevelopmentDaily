@@ -15,7 +15,7 @@ let dateLong = new Date("November 29 2022");
 console.log(dateLong);
 
 //another way of declaring date
-let dateParam = new Date(2023, 00, 14, 23, 01, 999);
+let dateParam = new Date(2023, 0, 14, 23, 1, 999);
 console.log(dateParam);
 let dateMilisec = Date.parse(dateParam);
 console.log(dateMilisec);
@@ -27,3 +27,6 @@ let timeDiff = dateNow.getTimezoneOffset();
 let months =["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 let month = months[dateNow.getMonth()]; //for UTC, use getUTCMonth
 console.log(`Today is ${month}`);
+
+export default dateNow;
+export {dateNowFormatted, month};
