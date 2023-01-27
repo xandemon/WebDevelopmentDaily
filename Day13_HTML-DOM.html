@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>HTML DOM</title>
+    <style>
+        #container {
+            width: 300px;
+            height: 300px;
+            position: relative;
+            background-color: rgb(26, 26, 26);
+            border: 3px solid gray;
+        }
+        #animate {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            background-color: #fff;
+        }
+        #clrChange {
+            width: fit-content;
+        }
+    </style>
+</head>
+
+<body>
+    <!--accessing dom element and form validation-->
+    <div id="parent">
+        <h1 id="clrChange" onmouseover="document.getElementById('clrChange').style.color='blue'"
+        onmouseout="document.getElementById('clrChange').style.color='black'">I change color!</h1>
+        <p id="nodeName"> </p>
+        <br>
+        <form name="myForm" method="post" onsubmit="return inputError()">
+            Enter a number: <input type="number" name="num" required>
+            <br><br>
+            Enter your first name: <input type="text" name="fname">
+            <button type="submit"> Submit </button>
+        </form>
+        <p><button id="removeNode" onclick="removeNodeName()">Click this button to remove above line of node name.</button></p>
+    </div>
+
+    <!--javascript animation using HTML DOM-->
+    <div id="container">
+        <div id="animate"></div>
+    </div>
+    <br>
+    <button onclick="animation()">Animate!</button>
+    <p style="font-weight: 600;">This paragraph is just here to test HTML collections.</p>
+
+    <!--js code for certain operations-->
+    <script>
+        //adding an html element
+        const para = document.createElement("p");
+        const node = document.createTextNode("This was inserted using JS.");
+        para.appendChild(node);
+        const parent = document.getElementById("parent");
+        parent.appendChild(para);
+
+        //displaying the node name of html element
+        let nodeNm = document.getElementById('nodeName');
+        nodeNm.firstChild.nodeValue = "Node name of above text element is " + "'" + nodeNm.nodeName + "'";
+        const inputError = function () {
+            let txtInput = document.forms["myForm"]["fname"].value;
+            if (txtInput == "") {
+                alert("Name must be filled out!");
+                return false;
+            } else {
+                return true;
+            }
+        }
+        //HTML collection or NodeList
+        const allPara = document.getElementsByTagName("p");
+        allPara[allPara.length-1].style.color = "purple";
+        //removing the lone containing nodeName
+        function removeNodeName() {
+            //nodeNm.style.display = 'none';
+            nodeNm.remove();
+            document.getElementById("removeNode").innerHTML = "The line is removed.";
+        }
+        //html dom animation using js
+        function animation() {
+            let pos = 0;
+            let temp = null;
+            const elem = document.getElementById("animate");
+            clearInterval(temp);
+            function frame() {
+                if (pos == 260) {
+                    clearInterval(temp);
+                } else {
+                    pos++;
+                    elem.style.top = pos + "px";
+                    elem.style.left = pos + "px";
+                }
+            }
+            temp = setInterval(frame, 5);
+        }
+    </script>
+</body>
+</html>
