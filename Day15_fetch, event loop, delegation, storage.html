@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Day 15:</title>
+</head>
+
+<body>
+  <button type="button">Button 1</button>
+  <button type="button">Button 2</button>
+  <button type="button">Button 3</button>
+  <div>
+    <p>You are<br> an idiot.</p>
+  </div>
+
+  <script>
+
+
+    //EVENT DELEGATION
+
+    const buttons = document.querySelectorAll('button');
+    
+    document.addEventListener('click', (e) => {
+      console.log(e.target);
+      console.log("Shit! The doc has been clicked.");
+    })
+    document.body.addEventListener('click', () => {
+        console.log("Crap! The body has been clicked.");
+      }, { capture: true }
+    );
+    buttons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        // e.stopPropagation();
+        console.log("Oooh, I got clicked!")
+      })
+    })
+    
+
+    //STORAGE: LOCAL, SESSION, AND COOKIES
+
+    //local storage   | cookies       | session storage
+    //10MB            | 4KB           | 5MB
+    //never expires   | manual        | expires on session end (tabs)
+    //client          |client/server  | client
+    
+    window.localStorage.setItem("Name", "Sandesh");
+    localStorage.setItem("Name", "Sandesh");
+    sessionStorage.setItem("LName", "Katwal");
+    console.log(localStorage.getItem("Name"));
+    console.log(sessionStorage.getItem("LName"));
+    
+    let date = new Date(2024, 0, 2).toUTCString();
+    document.cookie = `username=deadclown09; expires=${date}`
+    console.log(document.cookie);
+    console.log("");
+
+
+    //FETCH WITH PROMISE & ASYNC/AWAIT
+    
+    const url = "https://jsonplaceholder.typicode.com/users"
+    fetch(url).then(response => {
+      return response.json();
+    }).then(data => {
+      console.log("");
+      console.log(typeof data);
+      data.map(user => console.log(user.username));
+    })
+    console.log("hi");
+    
+    //same as above using async/await
+    async function doStuff() {
+      try {
+        let response = await fetch(url);
+        console.log(response.ok);
+        let data = await response.json();
+        console.log("");
+        data.map(usr => {
+          console.log(usr.email);
+        })
+      } catch (err) {
+        console.error(err);
+      }
+    }
+    doStuff();
+    </script>
+</body>
+
+</html>
