@@ -1,0 +1,30 @@
+{
+  "name": "webdevelopmentdaily",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Just a repo to track my daily web development coding.<br>\r Similar to #30daysofcodechallenge or #100daysofcodechallenge<br><br>",
+  "main": "Day 16.js",
+  "dependencies": {
+    "ansi-regex": "^4.1.1",
+    "prompt-sync": "^4.2.0",
+    "strip-ansi": "^5.2.0",
+    "uuid": "^9.0.0"
+  },
+  "scripts": {
+    "start": "parcel index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deadclown09/WebDevelopmentDaily.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/deadclown09/WebDevelopmentDaily/issues"
+  },
+  "homepage": "https://github.com/deadclown09/WebDevelopmentDaily#readme",
+  "devDependencies": {
+    "parcel": "^2.8.3"
+  }
+}
