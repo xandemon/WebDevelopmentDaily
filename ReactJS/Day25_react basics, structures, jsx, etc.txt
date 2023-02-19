@@ -1,0 +1,68 @@
+// WHAT IS REACT?
+
+// JSX, COMPONENTS, PROPS
+
+    /* inside Job.js */
+        export const Job = (props) => {
+        return (
+            <div>
+                <h1> {props.salary} </h1>
+                <h1> {props.position} </h1>
+                <h1> {props.company} </h1>
+            </div>
+        );
+        };
+    /* inside return App.js */
+        <div className="App">
+            <Job salary={90000} position="Frontend developer" company="Meta" />
+            <Job salary={120000} position="Backend developer" company="Google" />
+            <Job salary={200000} position="Fullstack developer" company="IBM" />
+        </div>
+
+// TERNARY OPERATORS, LISTS AND CSS
+
+    /* inside planets.js */
+        export const planets = [
+            { name: "Mars", isGasPlanet: false },
+            { name: "Earth", isGasPlanet: false },
+            { name: "Jupiter", isGasPlanet: true },
+            { name: "Venus", isGasPlanet: false },
+            { name: "Neptune", isGasPlanet: true },
+            { name: "Uranus", isGasPlanet: true },
+        ];
+    /* inside return App.js */
+        {planets.map(
+            (planet, key) => planet.isGasPlanet === true && <h1>{planet.name}</h1>
+        )}
+
+//STATES IN REACT, useState HOOK
+
+    /* inside App function */
+        const [counter, setCounter] = useState(0);
+        return (
+            <div className="App">
+            <button
+                onClick={() => {
+                setCounter(counter + 1);
+                }}
+            >
+                Increase
+            </button>
+            <button
+                onClick={() => {
+                setCounter(counter - 1);
+                }}
+            >
+                Decrease
+            </button>
+            <button
+                onClick={() => {
+                setCounter(0);
+                }}
+            >
+                Reset
+            </button>
+            <br />
+            {counter}
+            </div>
+        );
