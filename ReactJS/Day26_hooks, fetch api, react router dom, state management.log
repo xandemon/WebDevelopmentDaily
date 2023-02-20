@@ -1,0 +1,65 @@
+// COMPONENT LIFECYCLE, USEEFFECT HOOK
+
+    stages: mounting, updating, unmounting
+
+    //useEffect(() => {
+        console.log("Mounting.");
+        return () => {
+            console.log("Unmounting.");
+        }
+    }, []);
+
+
+// FETCHING DATA FROM APIS
+
+    fetch(`https://excuser-three.vercel.app/v1/excuse/${reason}/`)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setExcuse(data[0].excuse);
+      });
+
+    // alternatively, use Axios module
+        Axios.get(link)
+        .then((response) => response.data);
+
+
+// REACT ROUTER DOM
+
+    npm install react-router-DOM
+    import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+    //inside return App.js
+        <Router>
+            <NavBar />
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/menu" element={<Menu />} />
+                <Route path="/contact" element={<Contact />} />
+            </Routes>
+        </Router>
+
+
+// STATE MANAGEMENT USING useContext HOOK
+
+    //props drilling is the scenario or condition in which props (variables, fnctions, states) are passed through multiple components without the intermediary components using them.
+
+    import {createContext, useContext} from "react";
+    export const AppContext = createContext();
+    //wrap the components to which you want to make props accessible
+        <Router>
+            <NavBar />
+            <Routes>
+                <AppContext.Provider value={{username, setUsername}}>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/menu" element={<Menu />} />
+                </AppContext>
+                <Route path="/contact" element={<Contact />} />
+            </Routes>
+        </Router>
+
+    //to use the contexts
+        import {useContext} from "react";
+        import {AppContext} from "App.js";
+        const {username} = useContext(AppContext);
+
