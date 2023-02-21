@@ -1,0 +1,87 @@
+// REACT QUERY
+
+    //React Query is a module that helps you with fetching data from APIs. It is the recommended way to fetch data in React and looks like it is an alternative to useEffect hook.
+
+    //to install React Query
+        npm install @tanstack/react-query
+    import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+    const client = new QueryClient();
+    //above the components where you want to fetch data
+        <QueryClientProvider client={client}>
+            <Router>
+                <NavBar />
+                <Routes>
+                    <AppContext.Provider value={{username, setUsername}}>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/menu" element={<Menu />} />
+                    </AppContext>
+                    <Route path="/contact" element={<Contact />} />
+                </Routes>
+            </Router>
+        </QueryClientProvider>
+
+    //inside component where you want to fetch data
+        import { useQuery } from "@tanstack/react-query"
+        import Axios from "axios"
+        const { data, isLoading, isError, refetch } = useQuery(["data-identifier"], () => {
+            return Axios.get("link of the api").then((res) => res.data);
+        });
+        isLoading ? return <h3>loading...</h3> : return
+        <h1> {data} </h1>
+
+
+// FORMS IN REACT
+
+    //npm install react-hook-form yup @hookform/resolvers
+
+    import { useForm } from "react-hook-form";
+    import * as yup from "yup";
+
+    //inside Form component
+    const schema = yup.object().shape({
+        fullName: yup.string().required(),
+        age: yup.number().min(18).required(),
+        email: yup.string().email().required()
+    })
+
+    const {register, handleSubmit} = useForm();
+    const onSubmit = (data) => {
+        console.log(data);
+    }
+    return (
+        <form onSubmit={handleSubmit(onSubmit)}>
+            <input type="text" {...register("fullName")}> />
+        </form>
+    )
+
+
+// CUSTOM HOOKS
+
+    //custom hooks are just like functions but they start with use keyword like useState, useContext, etc. And a normal function cannot contain hooks inside it, however, a hool can have a hook inside it. Also the hooks need to be defined at the topmost level of the component. Those are one of the keypoints of hooks.
+
+    //Hooks abstract logic and therefore, they do not return UI/ JSX like components. You create custom hooks the same way you create functions. However, you need to keep above differences in mind about hooks.
+
+    //for example on this, check my counter mini-project
+
+
+// TYPESCRIPT AND REACT SAFETY
+
+    //npx create-react-app myapp --template TYPESCRIPT
+    almost everything is same
+    extensions will change from .jsx to .tsx
+
+    you define type with colon like  ->  name: string
+    for example in props,
+        interface Props {
+            name: string
+            age: number
+            friends: string[];
+        }
+    then while using props in component
+        export const component1(props: Props) {
+        return (<div>)
+
+
+//REDUX TOOLKIT
+
+    //watched its use in a video but need to learn it again
